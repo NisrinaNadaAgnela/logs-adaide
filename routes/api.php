@@ -20,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/logs', [App\Http\Controllers\LogsController::class, 'postLogs']);
 Route::get('/logs', [App\Http\Controllers\LogsController::class, 'getLogs']);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

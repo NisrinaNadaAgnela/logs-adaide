@@ -21,16 +21,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $data['logs'] = \DB::table('logs')
-                        ->get();
-        return view('home', $data);
-    }
-    
-    // public function logs()
+
+    // public function index()
     // {
-        
-    //     return view('logs.logs', $data);
+    //     $data['logs'] = \DB::table('logs')
+    //                     ->get();
+    //     return view('home', $data);
     // }
+    
+    // // public function logs()
+    // // {
+        
+    // //     return view('logs.logs', $data);
+    // // }
 }
