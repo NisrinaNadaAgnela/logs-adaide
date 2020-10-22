@@ -25,7 +25,7 @@ class LogsController extends Controller
 
     function getLogs(){
 
-        $data['logs'] = \App\Models\Logs::orderBy('id')->get();
+        $data['logs'] = \App\Models\Logs::get();
         // $data = Logs::all();
 
         return view('Logs.logs', $data);

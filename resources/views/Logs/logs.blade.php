@@ -10,10 +10,6 @@
                 width: 50%;
                 margin: 15px auto;
             }
-            /* #myChart {
-                width: 50%;
-                height: 100px;
-            } */
         </style>
 
     <!-- Fonts -->
@@ -31,16 +27,18 @@
                 <div class="card-header">Data Logs</div>
                     <div class="card-body">
                         <div class="chart">
-                            <canvas id="chart"></canvas>
+                            @foreach($logs as $row)
+                            <canvas id="myChart"></canvas>
+                            @endforeach
                             <script>
-                                var ctx = document.getElementById("chart");
+                                var ctx = document.getElementById("myChart");
                                 var myChart = new Chart(ctx, {
                                     type: 'line',
                                     data: {
-                                        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                                        labels: [{{ $row->date }}],
                                         datasets: [{
-                                                label: 'Contoh Chart',
-                                                data: [112, 190, 30, 50, 20, 30],
+                                                label: 'Data Grafik Logs',
+                                                data: [{{ $row->id }}],
                                                 backgroundColor: [
                                                     'rgb(255, 255, 0)'
                                                     // 'rgba(54, 162, 235, 0.2)',
