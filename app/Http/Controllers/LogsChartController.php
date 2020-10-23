@@ -16,7 +16,7 @@ class LogsChartController extends Controller
      */
     public function index()
     {
-        $users = User::select(DB::raw("COUNT(*) as count"))
+        $instance = User::select(DB::raw("COUNT(*) as count"))
                 ->whereYear('created_at', date('Y'))
                 ->groupBy(DB::raw("Month(created_at)"))
                 ->pluck('count');
@@ -27,7 +27,7 @@ class LogsChartController extends Controller
 
         $datas = array(0,0,0,0,0,0,0,0,0,0,0,0);
         foreach ($months as $index => $month) {
-            $datas[$month] = $users[$index];
+            $datas[$month] = $instance[$index];
         }
 
         return view('chart', compact('datas'));

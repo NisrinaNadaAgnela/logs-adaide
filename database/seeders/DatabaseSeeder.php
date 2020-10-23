@@ -13,6 +13,11 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
+    // public function run() {
+    // 	$this->call(LogsSeeder::class);
+    // }
+
     public function run()
     {
     	$faker = Faker::create();
@@ -24,6 +29,25 @@ class DatabaseSeeder extends Seeder
     			'created_at' => $faker->dateTimeBetween('-6 month', '+1 month')
     		]);
     	}
-        // \App\Models\User::factory(10)->create();
-    }
+
+    // public function run()
+    // {
+    // 	$faker = Faker::create();
+    // 	foreach (range(1, 100) as $index) {
+    // 		DB::table('logs')->insert([
+    // 			'instance' => $faker->str_random(20),
+    // 			'identity' => $faker->str_random(20),
+    // 			'date' => $faker->dateTimeBetween('-6 month', '+1 month')
+    // 		]);
+    // 	}
+    // }
+
+    // public function run() {
+    //      \App\Models\Logs::factory(20)->create([
+    //      	'instance' => str_random(20),
+    //      	'identity' => str_random(20),
+    //      	'date' => dateTimeBetween('-6 month', '+1 month')
+    //      ]);
+    // }
+    
 }
