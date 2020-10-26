@@ -25,16 +25,17 @@ class LogsController extends Controller
 
     function getLogs(){
 
-        $data['logs'] = \App\Models\Logs::get();
-        // $data = Logs::all();
+        // $data['logs'] = \App\Models\Logs::get();
 
-        return view('Logs.logs', $data);
+        $data = \DB::table('logs')
+        ->select([
+            \DB::raw('count(*) as jumlah'),
+            \DB::raw('MONTH(date) as Bulan') 
+        ])
+        ->groupBy('date')
+        ->OrderBy('date', 'desc')
+        ->get();
 
-        // return response()->json(
-        //     [
-        //         "message" => "Success",
-        //         "data" => $data
-        //     ]
-        // );
+        return view('Logs.logs', compact('data'));
     }
 }

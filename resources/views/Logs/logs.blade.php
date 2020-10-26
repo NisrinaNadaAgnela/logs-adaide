@@ -18,7 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <title>Laravel</title>
+    <title>Projek PKL</title>
 </head>
 <div class="container">
     <div class="row justify-content-center">
@@ -27,33 +27,21 @@
                 <div class="card-header">Data Logs</div>
                     <div class="card-body">
                         <div class="chart">
-                            @foreach($logs as $row)
                             <canvas id="myChart"></canvas>
-                            @endforeach
                             <script>
                                 var ctx = document.getElementById("myChart");
                                 var myChart = new Chart(ctx, {
-                                    type: 'line',
+                                    type: 'bar',
                                     data: {
-                                        labels: [{{ $row->date }}],
+                                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Juni', 'Juli', 'Agt', 'Sep', 'Okt', 'Nov', 'Des'],
                                         datasets: [{
                                                 label: 'Data Grafik Logs',
-                                                data: [{{ $row->id }}],
+                                                data: ['$data'],
                                                 backgroundColor: [
                                                     'rgb(255, 255, 0)'
-                                                    // 'rgba(54, 162, 235, 0.2)',
-                                                    // 'rgba(255, 206, 86, 0.2)',
-                                                    // 'rgba(75, 192, 192, 0.2)',
-                                                    // 'rgba(153, 102, 255, 0.2)',
-                                                    // 'rgba(255, 159, 64, 0.2)'
                                                 ],
                                                 borderColor: [
                                                     'rgb(253, 215, 3)'
-                                                    // 'rgba(54, 162, 235, 1)',
-                                                    // 'rgba(255, 206, 86, 1)',
-                                                    // 'rgba(75, 192, 192, 1)',
-                                                    // 'rgba(153, 102, 255, 1)',
-                                                    // 'rgba(255, 159, 64, 1)'
                                                 ],
                                                 borderWidth: 3
                                             }]
