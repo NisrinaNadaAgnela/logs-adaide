@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Logs;
 use Illuminate\Support\Facades\DB;
 
 class LogsChartController extends Controller
@@ -16,18 +16,18 @@ class LogsChartController extends Controller
      */
     public function index()
     {
-        $instance = User::select(DB::raw("COUNT(*) as count"))
-                ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw("Month(created_at)"))
+        $instance = Logs::select(DB::raw("COUNT(*) as count"))
+                ->whereYear('date', date('Y'))
+                ->groupBy(DB::raw("Month(date)"))
                 ->pluck('count');
-        $months = User::select(DB::raw("Month(created_at) as month"))
-                ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw("Month(created_at)"))
+        $months = Logs::select(DB::raw("Month(date) as month"))
+                ->whereYear('date', date('Y'))
+                ->groupBy(DB::raw("Month(date)"))
                 ->pluck('month');
 
-        $datas = array(0,0,0,0,0,0,0,0,0,0,0,0);
-        foreach ($months as $index => $month) {
-            $datas[$month] = $instance[$index];
+        $logs = array(0,0,0,0,0,0,0,0,0,0,0,0);
+        foreach ($months as $indeks => $month) {
+            $logs[$month] = $instance[$indeks];
         }
 
         return view('chart', compact('datas'));

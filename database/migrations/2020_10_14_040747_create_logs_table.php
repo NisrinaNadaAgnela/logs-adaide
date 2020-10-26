@@ -18,6 +18,7 @@ class CreateLogsTable extends Migration
             $table->string('instance');
             $table->string('identity');
             $table->timestamp('date');
+            $table->string('state');
             $table->timestamps();
         });
     }

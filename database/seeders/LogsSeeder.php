@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Faker\Factory;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
 
 class LogsSeeder extends Seeder
@@ -15,13 +15,14 @@ class LogsSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Logs::class, 20)->create();
-        foreach (range(1, 100) as $index) {
+        $faker = Faker::create();
+    	foreach(range(1, 100) as $indeks) {
     		DB::table('logs')->insert([
-    			'instance' => str_random(20),
-    			'identity' => str_random(20),
-    			'date' => dateTimeBetween('-6 month', '+1 month')
+    			'instance' => $faker->words,
+    			'identity' => $faker->words,
+    			'state' => $faker->state,
+    			'date' => $faker->dateTimeBetween('-6 month', '+1 month')
     		]);
-		}
+    	}
 	}
 }
