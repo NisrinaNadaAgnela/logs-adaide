@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Logs extends Model
 {
-	use HasFactory;
-	
-    protected $table = 'logs';
+    use HasFactory;
+
+    protected $table = "logs";
 
     protected $fillable = [
-        'instance', 'identity', 'date'
+    	'instance', 'identity', 'state', 'date'
     ];
+    
+    //protected $guarded = [];
 }
