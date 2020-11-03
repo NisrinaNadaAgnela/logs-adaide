@@ -7,35 +7,38 @@ use App\Models\Logs;
 
 class LogsController extends Controller
 {
-    function postLogs(Request $request){
+    // function postLogs(Request $request){
 
-        $logs = new Logs; 
-        $logs->instance = $request->instance;
-        $logs->identity = $request->identity;
+    //     $logs = new Logs; 
+    //     $logs->instance = $request->instance;
+    //     $logs->identity = $request->identity;
 
-        $logs->save();
+    //     $logs->save();
 
-        return response()->json(
-            [
-                "message" => "Success",
-                "data" => $logs
-            ]
-        );
-    }
+    //     return response()->json(
+    //         [
+    //             "message" => "Success",
+    //             "data" => $logs
+    //         ]
+    //     );
+    // }
 
     function getLogs(){
 
-        // $data['logs'] = \App\Models\Logs::get();
+        $data['logs'] = \App\Models\Logs::get();
 
-        $data = \DB::table('logs')
+        $count = \DB::table('logs')
         ->select([
-            \DB::raw('count(*) as jumlah'),
-            \DB::raw('MONTH(date) as Bulan') 
-        ])
+            \DB::raw('count(*)')])
         ->groupBy('date')
-        ->OrderBy('date', 'desc')
         ->get();
 
-        return view('Logs.logs', compact('data'));
+        // $date = \DB::table('logs')
+        // ->select([
+        //     \DB::raw('MONTH(date)') ])
+        // ->groupBy('date')
+        // ->get();
+
+        return view('dashboard');
     }
 }

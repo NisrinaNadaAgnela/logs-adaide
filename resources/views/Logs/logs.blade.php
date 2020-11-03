@@ -27,32 +27,36 @@
                 <div class="card-header">Data Logs</div>
                     <div class="card-body">
                         <div class="chart">
-                            <canvas id="myChart"></canvas>
+
+                            @foreach($logs as $row)
+                            <canvas id="myChart" width="470" height="300"></canvas>
+                            @endforeach
+
                             <script>
-                                var ctx = document.getElementById("myChart");
+                                var ctx = document.getElementById("myChart").getContext('2d');
                                 var myChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
-                                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Juni', 'Juli', 'Agt', 'Sep', 'Okt', 'Nov', 'Des'],
+                                        labels: [{{ $row->date }}],
                                         datasets: [{
                                                 label: 'Data Grafik Logs',
-                                                data: ['$data'],
+                                                data: ['$count'],
                                                 backgroundColor: [
                                                     'rgb(255, 255, 0)'
                                                 ],
                                                 borderColor: [
                                                     'rgb(253, 215, 3)'
                                                 ],
-                                                borderWidth: 3
+                                                borderWidth: 2
                                             }]
                                     },
                                     options: {
                                         scales: {
                                             yAxes: [{
-                                                    ticks: {
-                                                        beginAtZero: true
-                                                    }
-                                                }]
+                                                ticks: {
+                                                    beginAtZero: true
+                                                }
+                                            }]
                                         }
                                     }
                                 });
