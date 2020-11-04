@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Logs;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class LogsSeeder extends Seeder
 {
@@ -14,6 +16,8 @@ class LogsSeeder extends Seeder
      */
     public function run()
     {
-        $index = factory(\App\Models\Logs::class, 30)->create();
+        // $index = factory(\App\Models\Logs::class, 30)->create();
+
+    	Logs::factory()->count(30)->create();
     }
 }

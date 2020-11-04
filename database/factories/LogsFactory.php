@@ -7,14 +7,14 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-$factory->define(Logs::class, function(Faker $faker) {
-    return [
-        'instance' => $faker->words,
-        'identity' => $faker->words,
-        'state' => $faker->state,
-        'date' => $faker->dateTimeBetween('-6 month', '+1 month')
-    ];
-});
+// $factory->define(Logs::class, function(Faker $faker) {
+//     return [
+//         'instance' => $faker->words,
+//         'identity' => $faker->words,
+//         'state' => $faker->state,
+//         'date' => $faker->dateTimeBetween('-6 month', '+1 month')
+//     ];
+//});
 
 
 class LogsFactory extends Factory
@@ -34,10 +34,10 @@ class LogsFactory extends Factory
     public function definition()
     {
         return [
-            // 'instance' => $this->faker->words,
-            // 'identity' => $this->faker->words,
-            // 'state' => $this->faker->state,
-            // 'date' => $this->faker->dateTimeBetween('-6 month', '+1 month'),
+            'instance' => $this->faker->words,
+            'identity' => $this->faker->words,
+            'state' => $this->faker->unique()->words,
+            'date' => $this->faker->dateTimeBetween('-6 month', '+1 month'),
         ];
     }
 }

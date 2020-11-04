@@ -28,11 +28,11 @@ class DatabaseSeeder extends Seeder
 	// }
 
     public function run() {
-    	//$this->call(LogsSeeder::class);
+    	$this->call(LogsSeeder::class);
 
-    	$this->call([
-    		LogsSeeder::class,
-    	]);
+    	// $this->call([
+    	// 	LogsSeeder::class,
+    	// ]);
     }
 
  //    public function run()

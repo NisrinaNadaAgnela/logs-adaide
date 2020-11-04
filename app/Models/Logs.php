@@ -15,5 +15,5 @@ class Logs extends Model
     	'instance', 'identity', 'state', 'date'
     ];
     
-    //protected $guarded = [];
+    protected $guarded = [];
 }
