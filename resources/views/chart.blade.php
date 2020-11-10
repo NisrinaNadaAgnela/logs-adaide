@@ -12,21 +12,23 @@
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 
 	<script>
-		var datas = <?php echo json_encode($datas) ?>
-
+		
 		Highcharts.chart('chart-container', {
+			chart:{
+				type: 'column'
+			},
 			title:{
-				text: 'Pengguna Baru, 2020'
+				text: 'Grafik State'
 			},
 			subtitle:{
 				text: 'Source : ADA IDE'
 			},
 			xAxis:{
-				categories:['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Juni', 'Juli', 'Agt', 'Sep', 'Okt', 'Nov', 'Des']
+				categories:{!!json_encode($categories)!!}
 			},
 			yAxis:{
 				title:{
-					text: 'Jumlah Pengguna Baru'
+					text: 'Jumlah Instanse'
 				}
 			},
 			legend:{
@@ -40,8 +42,7 @@
 				}
 			},
 			series:[{
-				name: 'Pengguna Baru',
-				data:datas
+				name: 'Identity'
 			}],
 			responsive:{
 				rules:[

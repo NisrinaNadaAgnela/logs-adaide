@@ -16,21 +16,32 @@ class LogsChartController extends Controller
      */
     public function index()
     {
-        $instance = Logs::select(DB::raw("COUNT(*) as count"))
-                ->whereYear('date', date('Y'))
-                ->groupBy(DB::raw("Month(date)"))
-                ->pluck('count');
-        $months = Logs::select(DB::raw("Month(date) as month"))
-                ->whereYear('date', date('Y'))
-                ->groupBy(DB::raw("Month(date)"))
-                ->pluck('month');
+        // $stt = Logs::select(DB::raw("COUNT(*) as count")) 
+        //         ->groupBy('state')
+        //         ->pluck('count');
+        // $iden = Logs::select(DB::raw("Logs(identity) as identitas"))
+        //         ->where('identity')
+        //         ->groupBy(DB::raw("Logs(identity)"))
+        //         ->pluck('identitas');
 
-        $logs = array(0,0,0,0,0,0,0,0,0,0,0,0);
-        foreach ($months as $indeks => $month) {
-            $logs[$month] = $instance[$indeks];
+        $negara = \App\Models\Logs::all();
+
+        $categories = [];
+
+        foreach ($negara as $stt) {
+            $categories[] = $stt->state;
         }
 
-        return view('chart', compact('datas'));
+        //dd(json_encode($categories));
+
+        return view('chart', ['categories' => $categories]);
+
+        
+        // foreach ($iden as $indeks => $identitas) {
+        //     $logs[$identitas] = $identity[$indeks];
+        // }
+
+        //return view('chart', compact('logs'));
     }
 
     /**
