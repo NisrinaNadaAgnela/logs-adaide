@@ -42,7 +42,8 @@
 				}
 			},
 			series:[{
-				name: 'Identity'
+				name: 'Jumlah',
+				data: [9, 11, 21, 7, 45, 76, 17, 62, 5] 
 			}],
 			responsive:{
 				rules:[
