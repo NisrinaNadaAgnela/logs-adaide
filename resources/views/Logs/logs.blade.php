@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('chartjs/Chart.bundle.js') }}"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="{{ asset('code/highcharts.js') }}"></script>
+    <script src="{{ asset('code/highcharts-3d.js') }}"></script>
+    <script src="{{ asset('code/modules/exporting.js') }}"></script>
+    <script src="{{ asset('code/modules/export-data.js') }}"></script>
     <style type="text/css">
         .container {
             width: 50%;
@@ -41,15 +43,14 @@
                                                 type: 'column'
                                             },
                                             title: {
-                                                text: 'Pengguna Baru, 2020'
+                                                text: 'Aktivitas User, 2020'
                                             },
                                             subtitle: {
                                                 text: 'Source : ADA IDE'
                                             },
                                             xAxis: {
-                                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Juni', 'Juli',
-                                                    'Agt', 'Sep', 'Okt', 'Nov', 'Des'
-                                                ]
+                                                categories: ['1', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Juni', 'Juli',
+                                                    'Agt', 'Sep', 'Okt', 'Nov', 'Des']
                                             },
                                             yAxis: {
                                                 title: {

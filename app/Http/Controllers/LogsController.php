@@ -26,32 +26,20 @@ class LogsController extends Controller
 
     function getLogs(){
 
-        // // $data['logs'] = \App\Models\Logs::get();
+        $instance = Logs::select(DB::raw("COUNT(*) as count"))
+                    ->whereYear('date', date('Y'))
+                    ->groupBy(DB::raw("Month(date)"))
+                    ->pluck('count');
 
-        // $count = \DB::table('logs')
-        // ->select([
-        //     \DB::raw('count(*)')])
-        // ->get();
-
-        // $date = \DB::table('logs')
-        // ->select([
-        //     \DB::raw('MONTH(date)') ])
-        // ->get();
-
-        // return view('dashboard');
-        $logs = Logs::select(DB::raw("COUNT(*) as count"))
+        $months = Logs::select(DB::raw("Month(date) as month"))
                 ->whereYear('date', date('Y'))
                 ->groupBy(DB::raw("Month(date)"))
-                ->pluck('count');
-        // $months = Logs::select(DB::raw("Month(date) as month"))
-        //         ->whereYear('date', date('Y'))
-        //         ->groupBy(DB::raw("Month(date)"))
-        //         ->pluck('month');
+                ->pluck('month');
 
-        // $logs = array(0,0,0,0,0,0,0,0,0,0,0,0);
-        // foreach ($months as $indeks => $month) {
-        //     $logs[$month] = $data[$indeks];
-        // }
+        $logs = array(0,0,0,0,0,0,0,0,0,0,0,0);
+        foreach ($months as $indeks => $month) {
+            $logs[$month] = $instance[$indeks];
+        }
 
         return view('logs.logs', compact('logs'));
     }
