@@ -21,20 +21,28 @@ class LogsChartController extends Controller
         //         ->pluck('count');
         // $iden = Logs::select(DB::raw("Logs(identity) as identitas"))
         //         ->where('identity')
-        //         ->groupBy(DB::raw("Logs(identity)"))
+        //         ->groupBy(\DB::raw("Logs(identity)"))
         //         ->pluck('identitas');
+
+        // $users = User::select(\DB::raw("COUNT(*) as count"))
+        //             ->whereYear('created_at', date('Y'))
+        //             ->groupBy(\DB::raw("Month(created_at)"))
+        //             ->pluck('count');
 
         $negara = \App\Models\Logs::all();
 
         $categories = [];
+        $data = Logs::select(\DB::raw("COUNT(*) as count"))
+                    ->groupBy('state')
+                    ->pluck('count');
 
         foreach ($negara as $stt) {
-            $categories[] = $stt->state;
+            $categories[] = $stt->groupBy('state');
         }
 
-        //dd(json_encode($categories));
+        //dd(json_encode($data));
 
-        return view('chart', ['categories' => $categories]);
+        return view('chart', ['categories' => $categories, 'data' => $data]);
 
         
         // foreach ($iden as $indeks => $identitas) {
