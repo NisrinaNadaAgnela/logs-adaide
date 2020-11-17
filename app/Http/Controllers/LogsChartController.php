@@ -29,21 +29,30 @@ class LogsChartController extends Controller
         //             ->groupBy(\DB::raw("Month(created_at)"))
         //             ->pluck('count');
 
-        $negara = \App\Models\Logs::all();
+        // $results = User::select(\DB::raw('YEAR(birth_date) as year, COUNT(id) as amount'))
+        //             ->groupBy(\DB::raw('YEAR(birth_date)'))
+        //             ->get();
 
-        $categories = [];
-        $data = Logs::select(\DB::raw("COUNT(*) as count"))
-                    ->groupBy('state')
-                    ->pluck('count');
+        // $pemilik = Pemilik::groupBy('mobil_id')->select('mobil_id', \DB::raw('count(*) as total'))->get();
 
-        foreach ($negara as $stt) {
-            $categories[] = $stt->groupBy('state');
-        }
+        // $negara = \App\Models\Logs::all();
+
+        // $categories = [];
+        // $data = Logs::select(\DB::raw("COUNT(id) as count"))
+        //             ->groupBy('state')
+        //             ->get();
+
+        $data = Logs::groupBy('state')->select('state', \DB::raw('COUNT(*) as jumlah'))->get();
+
+        // foreach ($negara as $stt) {
+        //     $categories[] = $stt->groupBy('state')->select();
+        // }
 
         //dd(json_encode($data));
 
-        return view('chart', ['categories' => $categories, 'data' => $data]);
+        return view('chart', compact('data'));
 
+        //return view('chart', ['categories' => $categories, 'data' => $data]);
         
         // foreach ($iden as $indeks => $identitas) {
         //     $logs[$identitas] = $identity[$indeks];
