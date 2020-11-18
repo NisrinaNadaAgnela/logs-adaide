@@ -38,17 +38,23 @@ class LogsChartController extends Controller
         // $negara = \App\Models\Logs::all();
 
         // $categories = [];
-        // $data = Logs::select(\DB::raw("COUNT(id) as count"))
+        // // $data = Logs::select(\DB::raw("COUNT(id) as count"))
         //             ->groupBy('state')
         //             ->get();
 
         $data = Logs::groupBy('state')->select('state', \DB::raw('COUNT(*) as jumlah'))->get();
 
+        $logs = [];
+
         // foreach ($negara as $stt) {
-        //     $categories[] = $stt->groupBy('state')->select();
+        //     $categories[] = $stt->groupBy('state');
         // }
 
-        //dd(json_encode($data));
+        dd(json_encode($data));
+
+        // foreach ($data as $datas) {
+        //     $logs[] = 
+        // }
 
         return view('chart', compact('data'));
 

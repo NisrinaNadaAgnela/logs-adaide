@@ -26,7 +26,7 @@
 				text: 'Source : ADA IDE'
 			},
 			xAxis:{
-				categories:data
+				categories:state
 			},
 			yAxis:{
 				title:{
