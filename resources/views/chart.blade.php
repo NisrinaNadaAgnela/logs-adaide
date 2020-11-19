@@ -12,8 +12,6 @@
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 
 	<script>
-
-		var data = <?php echo json_encode($data) ?>
 		
 		Highcharts.chart('chart-container', {
 			chart:{
@@ -26,7 +24,7 @@
 				text: 'Source : ADA IDE'
 			},
 			xAxis:{
-				categories:state
+				categories:{!!json_encode($stt)!!}
 			},
 			yAxis:{
 				title:{
@@ -45,7 +43,7 @@
 			},
 			series:[{
 				name: 'Jumlah',
-				data: jumlah
+				data:{!!json_encode($data)!!} 
 			}],
 			responsive:{
 				rules:[

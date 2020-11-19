@@ -15,56 +15,16 @@ class LogsChartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        // $stt = Logs::select(DB::raw("COUNT(*) as count")) 
-        //         ->groupBy('state')
-        //         ->pluck('count');
-        // $iden = Logs::select(DB::raw("Logs(identity) as identitas"))
-        //         ->where('identity')
-        //         ->groupBy(\DB::raw("Logs(identity)"))
-        //         ->pluck('identitas');
+    {       
+        $data = Logs::select('state', \DB::raw('COUNT(*) as jumlah'))
+                ->groupBy('state')
+                ->pluck('jumlah');
 
-        // $users = User::select(\DB::raw("COUNT(*) as count"))
-        //             ->whereYear('created_at', date('Y'))
-        //             ->groupBy(\DB::raw("Month(created_at)"))
-        //             ->pluck('count');
+        $stt = Logs::select('state')
+                ->groupBy('state')
+                ->pluck('state');
 
-        // $results = User::select(\DB::raw('YEAR(birth_date) as year, COUNT(id) as amount'))
-        //             ->groupBy(\DB::raw('YEAR(birth_date)'))
-        //             ->get();
-
-        // $pemilik = Pemilik::groupBy('mobil_id')->select('mobil_id', \DB::raw('count(*) as total'))->get();
-
-        // $negara = \App\Models\Logs::all();
-
-        // $categories = [];
-        // // $data = Logs::select(\DB::raw("COUNT(id) as count"))
-        //             ->groupBy('state')
-        //             ->get();
-
-        $data = Logs::groupBy('state')->select('state', \DB::raw('COUNT(*) as jumlah'))->get();
-
-        $logs = [];
-
-        // foreach ($negara as $stt) {
-        //     $categories[] = $stt->groupBy('state');
-        // }
-
-        dd(json_encode($data));
-
-        // foreach ($data as $datas) {
-        //     $logs[] = 
-        // }
-
-        return view('chart', compact('data'));
-
-        //return view('chart', ['categories' => $categories, 'data' => $data]);
-        
-        // foreach ($iden as $indeks => $identitas) {
-        //     $logs[$identitas] = $identity[$indeks];
-        // }
-
-        //return view('chart', compact('logs'));
+        return view('chart', ['data' => $data, 'stt' => $stt]);
     }
 
     /**
