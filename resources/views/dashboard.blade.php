@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Welcome To Laravel') }}
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight" onclick="">
+            {{ __('Chart State') }}
         </h2>
+        <link rel="stylesheet" type="text/css" href="./chart.blade.php">
     </x-slot>
 
     <div class="py-12">
